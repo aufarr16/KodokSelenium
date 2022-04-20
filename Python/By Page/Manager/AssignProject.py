@@ -38,6 +38,8 @@ try:
 	)
 
 	assign.click()	#klik tombol rolenya
+############################################################################Assign New Project
+	pname = "T3st @ss16n pR0j3ct?! (soon deleted)"
 #===========================================================================PIC
 	element = WebDriverWait(kodok, 10).until(
 		EC.presence_of_element_located((By.ID, "id_user"))
@@ -65,12 +67,46 @@ try:
 #=========================================================================Nama Project
 	textbox = kodok.find_element_by_id("nama_project")
 
-	textbox.send_keys("T3st @ss16n pR0j3ct (soon deleted)") 
-#=========================================================================	
+	textbox.send_keys(pname) 
+#=========================================================================Submit data	
 	select = kodok.find_element_by_id("btn-submit")
 	select.click()
 
-	time.sleep(5)
+##########################################################################Handover Project
+	element = WebDriverWait(kodok, 10).until(
+		EC.presence_of_element_located((By.XPATH, "//ul[@role='tablist']"))
+	)
+
+	handover = element.find_element_by_id("custom-tabs-three-profile-tab")
+	handover.click() 
+#===========================================================================PIC Original
+	time.sleep(4)
+	element = WebDriverWait(kodok, 10).until(
+		EC.presence_of_element_located((By.ID, "PIC2"))
+	)
+
+	select = Select(element)
+	select.select_by_visible_text("Yudha Bagus Bayu Pratidana")
+#=========================================================================Nama Project
+	element = WebDriverWait(kodok, 10).until(
+		EC.presence_of_element_located((By.ID, "nama_project2"))
+	)
+
+	select = Select(element)
+	select.select_by_visible_text(pname)
+#=========================================================================PIC Handover
+	time.sleep(2)
+	element = kodok.find_element_by_id("PIChandover")
+
+
+	select = Select(element)
+	select.select_by_visible_text("Hadi Santoso")
+#=========================================================================Submit data handover	
+	select = kodok.find_element_by_id("btn-submithandover")
+	select.click()
+
+##########################################################################Logout
+	time.sleep(4)
 	element = kodok.find_element_by_id("rn-dropdown")
 	element.click()
 
