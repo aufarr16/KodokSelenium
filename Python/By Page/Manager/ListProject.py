@@ -45,9 +45,51 @@ try:
 	)
 
 	excel = element.find_element_by_xpath("//a[@href='/manager/projects/export']")
-	excel.click()
+	#excel.click()
+#########################################################################Filter
+	element = kodok.find_element_by_id("filter")
+	extend = element.find_element_by_xpath("//button[@class='btn btn-tool']")		#find the "+" button to extend
 
+	extend.click()																	#extend
+
+	filters = WebDriverWait(kodok, 10).until(
+		EC.presence_of_element_located((By.XPATH, "//div[@class='card-body']"))		#take the filter body to access the dropdown
+	)
+#========================================================================PIC
+	dropdown = filters.find_element_by_id("filter-pic")								#ambil filter pic
+	select = Select(dropdown)
+
+	select.select_by_visible_text("YBP")
+#========================================================================Product
+	dropdown = filters.find_element_by_id("filter-product")							#ambil filter product
+	select = Select(dropdown)
+
+	select.select_by_visible_text("BersamaKU")
+#========================================================================Mitra
+	dropdown = filters.find_element_by_id("filter-mitra")							#ambil filter mitra
+	select = Select(dropdown)
+
+	select.select_by_visible_text("Western Union")
+#========================================================================Project
+	dropdown = filters.find_element_by_id("filter-namap")							#ambil filter nama project
+
+	dropdown.send_keys("Remittance")
+	dropdown.clear()																#kalo mau ngosongin filter bentuk textbox
+#========================================================================Jenis Project
+	dropdown = filters.find_element_by_id("filter-ptype")							#ambil filter jenis project
+	select = Select(dropdown)
+
+	select.select_by_visible_text("Sertifikasi")
+#========================================================================Status
+	dropdown = filters.find_element_by_id("filter-pstat")							#ambil filter status project
+	select = Select(dropdown)
+
+	select.select_by_visible_text("Pengujian Done")
+	time.sleep(2)
+	select.select_by_visible_text("Drop")
+	#select.select_by_visible_text("-")												#kalo mau ngosongin filter bentuk select
 #########################################################################Logout
+	time.sleep(3)
 	element = kodok.find_element_by_id("rn-dropdown")
 	element.click()
 

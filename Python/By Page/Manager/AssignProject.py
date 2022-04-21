@@ -55,12 +55,10 @@ try:
 #=========================================================================Jenis Project
 	element = kodok.find_element_by_id("id_ptype")
 
-
 	select = Select(element)
 	select.select_by_visible_text("Sertifikasi")
 #=========================================================================Mitra
 	element = kodok.find_element_by_id("id_mitra")
-
 
 	select = Select(element)
 	select.select_by_visible_text("Bank Mandiri")
